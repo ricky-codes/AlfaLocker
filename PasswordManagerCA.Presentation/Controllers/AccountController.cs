@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using MediatR;
+using PasswordManager.Presentation.Filters;
 using PasswordManagerCA.Core.Commands;
 using PasswordManagerCA.Core.Entities;
 using PasswordManagerCA.Infrastructure.Data.Config;
@@ -38,7 +39,7 @@ namespace PasswordManager.Presentation.Controllers
         public async Task<ActionResult> Registration(UserRegistrationCommand appUserCommand)
         {
             var response = await _mediator.Send(appUserCommand);
-            if(response.isValid)
+            if((bool)response.isValid)
             {
                 Session["user-id"] = response.Id;
             }
@@ -55,7 +56,7 @@ namespace PasswordManager.Presentation.Controllers
         {
             userVerificationCommand.Id = (int)Session["user-id"];
             var response = await _mediator.Send(userVerificationCommand);
-            if (response.isValid)
+            if ((bool)response.isValid)
             {
                 Session["user-id"] = response.Id;
                 return RedirectToAction("Index", "Home");
@@ -73,7 +74,7 @@ namespace PasswordManager.Presentation.Controllers
         public async Task<ActionResult> Login(UserLoginCommand userLoginCommand)
         {
             var response = await _mediator.Send(userLoginCommand);
-            if (response.isValid)
+            if ((bool)response.isValid)
             {
                 Session["user-id"] = response.Id;
                 Session["user-username"] = response.AppUserUsername;
@@ -92,7 +93,7 @@ namespace PasswordManager.Presentation.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-
+        [AuthenticationFilter]
         public async Task<ActionResult> Manage()
         {
             CurrentUserCommand currentUser = new CurrentUserCommand();
@@ -101,15 +102,15 @@ namespace PasswordManager.Presentation.Controllers
             return View(response);
         }
 
+        [AuthenticationFilter]
         [HttpPost]
         public async Task<ActionResult> Manage(UserManageCommand userManageCommand)
         {
             userManageCommand.Id = (int)Session["user-id"];
             var response = await _mediator.Send(userManageCommand);
-            if (response.isValid)
+            if ((bool)response.isValid)
             {
-                Session["user-fullname"] = response.AppUserFirstname + " " + response.AppUserLastname; 
-                return RedirectToAction("Index", "Home");
+                Session["user-fullname"] = response.AppUserFirstname + " " + response.AppUserLastname;
             }
             return View(response);
         }

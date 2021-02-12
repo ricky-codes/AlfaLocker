@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace PasswordManager.Presentation
+namespace WebUITest
 {
     public class BundleConfig
     {
@@ -20,10 +20,10 @@ namespace PasswordManager.Presentation
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap-dark.js"));
+                      "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap-dark.css",
+                      "~/Content/bootstrap.css",
                       "~/Content/site.css"));
         }
     }

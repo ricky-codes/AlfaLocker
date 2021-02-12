@@ -35,7 +35,8 @@ namespace PasswordManagerCA.Core.Handlers.Command
                 AppUserFirstname = currentUser.appUsersFirstname,
                 AppUserLastname = currentUser.appUsersLastname,
                 AppUserPhoneNumber = currentUser.appUsersPhoneNumber,
-                AppUserUsername = currentUser.appUsersUsername
+                AppUserUsername = currentUser.appUsersUsername,
+                isValid = null
             };
 
         }

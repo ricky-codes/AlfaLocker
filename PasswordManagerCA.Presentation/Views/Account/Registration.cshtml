@@ -18,7 +18,7 @@
             @Html.LabelFor(model => model.AppUserUsername, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.AppUserUsername, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AppUserUsername, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.AppUserUsername, "", new { @class = "label label-danger" })
             </div>
         </div>
 
@@ -26,7 +26,7 @@
             @Html.LabelFor(model => model.AppUserEmail, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.AppUserEmail, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AppUserEmail, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.AppUserEmail, "", new { @class = "label label-danger" })
             </div>
         </div>
 
@@ -34,7 +34,7 @@
             @Html.LabelFor(model => model.AppUserFirstname, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.AppUserFirstname, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AppUserFirstname, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.AppUserFirstname, "", new { @class = "label label-danger" })
             </div>
         </div>
 
@@ -42,7 +42,7 @@
             @Html.LabelFor(model => model.AppUserLastname, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.AppUserLastname, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AppUserLastname, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.AppUserLastname, "", new { @class = "label label-danger" })
             </div>
         </div>
 
@@ -50,7 +50,7 @@
             @Html.LabelFor(model => model.AppUserPhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.AppUserPhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AppUserPhoneNumber, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.AppUserPhoneNumber, "", new { @class = "label label-danger" })
             </div>
         </div>
 
@@ -58,7 +58,7 @@
             @Html.LabelFor(model => model.AppUserPassword, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.AppUserPassword, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AppUserPassword, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.AppUserPassword, "", new { @class = "label label-danger" })
             </div>
         </div>
 
@@ -66,17 +66,13 @@
             @Html.LabelFor(model => model.AppUserConfirmationPassword, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.AppUserConfirmationPassword, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AppUserConfirmationPassword, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.AppUserConfirmationPassword, "", new { @class = "label label-danger" })
             </div>
-        </div>
-
-        <div>
-            <p>You will receive a verification code on your email</p>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Send" class="btn btn-default" />
+                <input type="submit" value="Send" class="btn btn-primary" />
             </div>
         </div>
     </div>

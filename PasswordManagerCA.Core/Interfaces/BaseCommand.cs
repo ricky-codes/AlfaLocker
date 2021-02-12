@@ -8,6 +8,6 @@ namespace PasswordManagerCA.Core.Interfaces
 {
     public abstract class BaseCommand
     {
-        public bool isValid { get; internal set; }
+        public bool? isValid { get; internal set; }
     }
 }
