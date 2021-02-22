@@ -1,12 +1,16 @@
 ﻿body {
     padding-top: 50px;
-    padding-bottom: 20px;
+    padding-bottom: 200px;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+}
+
+body::-webkit-scrollbar {
+    display: none;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -22,3 +26,25 @@ select,
 textarea {
     max-width: 280px;
 }
+
+#home-card-column {
+    background-color: #303030;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+#home-card-row{
+    margin-top: 50px; 
+}
+
+#home-card-container {
+    margin-top: 100px;
+}
+
+#vertical-center-text {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 100px;
+}
+

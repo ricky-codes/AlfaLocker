@@ -1,0 +1,63 @@
+﻿@model IEnumerable<PasswordManagerCA.Core.Entities.Accounts>
+
+@{
+    ViewBag.Title = "Accounts";
+}
+
+<h2>Accounts</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.accountUsername)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.accountPasswordHash)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.accountPasswordSalt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.accountWebsiteLink)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.accountApp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.accountAppUser)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.accountUsername)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.accountPasswordHash)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.accountPasswordSalt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.accountWebsiteLink)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.accountApp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.accountAppUser)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

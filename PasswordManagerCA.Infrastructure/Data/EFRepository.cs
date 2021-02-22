@@ -17,11 +17,12 @@ namespace PasswordManagerCA.Infrastructure.Data.Config
         public EFRepository(AppDbModel dbContext)
         {
             _dbContext = dbContext;
+            _dbContext.Configuration.LazyLoadingEnabled = false;
         }
 
         public T GetByID<T>(int id) where T : BaseEntity, IAggregateRoot
         {
-            return _dbContext.Set<T>().SingleOrDefault(e => e.Id == id);
+            return _dbContext.Set<T>().SingleOrDefault(e => e.id == id);
         }
 
         public IQueryable<T> GetAll<T>() where T : BaseEntity, IAggregateRoot
@@ -32,15 +33,8 @@ namespace PasswordManagerCA.Infrastructure.Data.Config
 
         public T Insert<T>(T entity) where T : BaseEntity, IAggregateRoot
         {
-            try
-            {
-                _dbContext.Set<T>().Add(entity);
-                _dbContext.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                string er = e.InnerException.ToString();
-            }
+            _dbContext.Set<T>().Add(entity);
+            _dbContext.SaveChanges();
             
             return entity;
         }

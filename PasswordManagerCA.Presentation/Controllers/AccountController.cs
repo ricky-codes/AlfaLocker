@@ -24,12 +24,6 @@ namespace PasswordManager.Presentation.Controllers
             _mediator = mediator;
         }
 
-        // GET: Account
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         public ActionResult Registration()
         {
             return View(new UserRegistrationCommand());
@@ -94,17 +88,17 @@ namespace PasswordManager.Presentation.Controllers
         }
 
         [AuthenticationFilter]
-        public async Task<ActionResult> Manage()
+        public async Task<ActionResult> Settings()
         {
-            CurrentUserCommand currentUser = new CurrentUserCommand();
-            currentUser.Id = (int)Session["user-id"];
-            var response = await _mediator.Send(currentUser);
+            UserSettingsCommand settingsCommand = new UserSettingsCommand();
+            settingsCommand.Id = (int)Session["user-id"];
+            var response = await _mediator.Send(settingsCommand);
             return View(response);
         }
 
         [AuthenticationFilter]
         [HttpPost]
-        public async Task<ActionResult> Manage(UserManageCommand userManageCommand)
+        public async Task<ActionResult> Settings(UserSettingsUpdateCommand userManageCommand)
         {
             userManageCommand.Id = (int)Session["user-id"];
             var response = await _mediator.Send(userManageCommand);

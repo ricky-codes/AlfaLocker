@@ -34,7 +34,7 @@ namespace PasswordManagerCA.Core.Handlers.Command
                 if (_passwordHasher.Verify(request.AppUserPassword, user.appUsersPasswordHash))
                 {
                     request.isValid = true;
-                    request.Id = user.Id;
+                    request.Id = user.id;
                     request.AppUserUsername = user.appUsersUsername;
                     request.AppUserFullname = user.appUsersFirstname + " " + user.appUsersLastname;
                 }

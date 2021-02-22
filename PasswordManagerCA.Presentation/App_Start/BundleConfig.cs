@@ -24,7 +24,7 @@ namespace PasswordManager.Presentation
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-dark.css",
-                      "~/Content/site.css"));
+                      "~/Content/Site.css"));
         }
     }
 }

@@ -43,15 +43,22 @@ namespace PasswordManager.Presentation.App_Start
             builder.RegisterType(typeof(UserLoginCommandHandler))
                 .As<IRequestHandler<UserLoginCommand, UserLoginCommand>>()
                 .AsImplementedInterfaces();
-            builder.RegisterType(typeof(UserManageCommandHandler))
-                .As<IRequestHandler<UserManageCommand, UserManageCommand>>()
+            builder.RegisterType(typeof(UserSettingsUpdateCommandHandler))
+                .As<IRequestHandler<UserSettingsUpdateCommand, UserSettingsUpdateCommand>>()
                 .AsImplementedInterfaces();
-            builder.RegisterType(typeof(CurrentUserCommandHandler))
-                .As<IRequestHandler<CurrentUserCommand, UserManageCommand>>()
+            builder.RegisterType(typeof(UserSettingsCommandHandler))
+                .As<IRequestHandler<UserSettingsCommand, UserSettingsUpdateCommand>>()
+                .AsImplementedInterfaces();
+            builder.RegisterType(typeof(UserAccountsCommandHandler))
+                .As<IRequestHandler<UserAccountsCommand, UserAccountsCommand>>()
+                .AsImplementedInterfaces();
+            builder.RegisterType(typeof(UserAccountsAddCommandHandler))
+                .As<IRequestHandler<UserAccountsAddCommand, UserAccountsCommand>>()
                 .AsImplementedInterfaces();
 
             builder.RegisterControllers(typeof(HomeController).Assembly);
             builder.RegisterControllers(typeof(AccountController).Assembly);
+            builder.RegisterControllers(typeof(ManageController).Assembly);
 
             builder.Register(x => new ServiceLocatorProvider(() => new AutofacServiceLocator(AutofacDependencyResolver.Current.RequestLifetimeScope))).InstancePerRequest();
             builder.Register<ServiceFactory>(ctx =>

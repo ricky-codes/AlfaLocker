@@ -3,6 +3,7 @@ namespace PasswordManagerCA.Core.Entities
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using PasswordManagerCA.SharedKernel;
     using PasswordManagerCA.SharedKernel.Interfaces;
 

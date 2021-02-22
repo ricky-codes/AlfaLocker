@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PasswordManagerCA.Core.Entities;
 using PasswordManagerCA.Infrastructure.Data.Config;
+using PasswordManagerCA.SharedKernel;
 
 namespace PasswordManagerCA.Infrastructure.Data
 {

@@ -46,7 +46,7 @@ namespace PasswordManagerCA.Core.Handlers.Command
 
             try
             {
-                int returnedID = _repository.Insert<AppUsers>(userToRegister).Id;
+                int returnedID = _repository.Insert<AppUsers>(userToRegister).id;
                 
                 await _mediator.Publish(new UserRegistrationNotification
                 {
