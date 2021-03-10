@@ -37,7 +37,7 @@ namespace PasswordManagerCA.Core.Handlers.Command
                 appUsersUsername = request.AppUserUsername,
                 appUsersFirstname = request.AppUserFirstname,
                 appUsersLastname = request.AppUserLastname,
-                appUsersPhoneNumber = request.AppUserPhoneNumber,
+                appUsersPhoneNumber = (int)request.AppUserPhoneNumber,
                 appUsersVerificationCode = new VerificationCode(6).VerificationCodeNumber,
                 appUsersPasswordHash = _passwordHasher.Hash(request.AppUserPassword),
                 createdAt = DateTime.Now,

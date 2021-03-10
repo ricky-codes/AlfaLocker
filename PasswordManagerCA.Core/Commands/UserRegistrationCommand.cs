@@ -36,7 +36,7 @@ namespace PasswordManagerCA.Core.Commands
         [Required(ErrorMessage = "Please insert your phone number")]
         [Display(Name = "Phone number")]
         [RegularExpression("9[1236][0-9]{7}|2[1-9][0-9]{7}", ErrorMessage = "This is not a valid PT-PT phone number")]
-        public int AppUserPhoneNumber { get; set; }
+        public int? AppUserPhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Please insert your password")]
         [StringLength(100)]

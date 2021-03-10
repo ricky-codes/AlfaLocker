@@ -18,12 +18,7 @@ namespace PasswordManagerCA.Infrastructure.Data.Config
                 .IsUnicode(false);
 
             modelBuilder.Entity<Accounts>()
-                .Property(e => e.accountPasswordHash)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Accounts>()
-                .Property(e => e.accountPasswordSalt)
-                .IsFixedLength()
+                .Property(e => e.accountPasswordEncrypt)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Accounts>()

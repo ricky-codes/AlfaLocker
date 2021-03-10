@@ -8,38 +8,48 @@ using MediatR;
 using PasswordManagerCA.Core.Commands;
 using PasswordManagerCA.Core.Entities;
 using PasswordManagerCA.Core.Interfaces;
+using PasswordManagerCA.SharedKernel;
 using PasswordManagerCA.SharedKernel.Interfaces;
 
 namespace PasswordManagerCA.Core.Handlers.Command
 {
-    public class UserAccountsCommandHandler : IRequestHandler<UserAccountsCommand, UserAccountsCommand>
+    public class UserAccountsCommandHandler : IRequestHandler<UserAccountsCommand, List<UserAccountsCommand>>
     {
         private readonly IRepository _repository;
         private readonly IMediator _mediator;
-        private readonly IPasswordHasher _passwordHasher;
+        private readonly IPasswordEncrypt _passwordEncrypt;
 
 
-        public UserAccountsCommandHandler(IMediator mediator, IRepository repository, IPasswordHasher passwordHasher)
+        public UserAccountsCommandHandler(IMediator mediator, IRepository repository, IPasswordEncrypt passwordEncrypt)
         {
             this._repository = repository;
             this._mediator = mediator;
-            this._passwordHasher = passwordHasher;
+            this._passwordEncrypt = passwordEncrypt;
         }
 
-        public async Task<UserAccountsCommand> Handle(UserAccountsCommand request, CancellationToken cancellationToken)
+        public async Task<List<UserAccountsCommand>> Handle(UserAccountsCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                AppUsers currentUser = _repository.GetByID<AppUsers>(request.Id);
-                request.UserAccounts = currentUser.Accounts.ToList();
-                request.isValid = true;
-                return request;
+                List<Accounts> currentUserAccounts = _repository.GetAll<Accounts>().Where(u => u.AppUsers.id == request.UserId).ToList();
+                List<UserAccountsCommand> userAccounts = new List<UserAccountsCommand>();
+
+                foreach (Accounts account in currentUserAccounts)
+                {
+                    userAccounts.Add(new UserAccountsCommand
+                    {
+                        AccountsUsername = account.accountUsername,
+                        AccountPassword = _passwordEncrypt.DecryptPassword(Globals.encryptKeyGlobal, account.accountPasswordEncrypt),
+                        AccountWebsiteLink = account.accountWebsiteLink,
+                        Id = account.id,
+                        isValid = true
+                    }); 
+                }
+                return userAccounts;
             }
-            catch(Exception ex)
+            catch(Exception err)
             {
-                string err = ex.Message;
-                request.isValid = false;
-                return request;
+                return null;
             }
         }
     }

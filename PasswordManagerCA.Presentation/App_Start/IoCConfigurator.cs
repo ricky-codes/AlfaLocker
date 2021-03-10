@@ -33,6 +33,7 @@ namespace PasswordManager.Presentation.App_Start
             builder.RegisterType<EFRepository>().As<IRepository>();
 
             builder.RegisterType<PasswordHasher>().As<IPasswordHasher>();
+            builder.RegisterType<PasswordEncrypt>().As<IPasswordEncrypt>();
 
             builder.RegisterType(typeof(UserRegistrationCommandHandler))
                 .As<IRequestHandler<UserRegistrationCommand, UserRegistrationCommand>>()
@@ -50,10 +51,10 @@ namespace PasswordManager.Presentation.App_Start
                 .As<IRequestHandler<UserSettingsCommand, UserSettingsUpdateCommand>>()
                 .AsImplementedInterfaces();
             builder.RegisterType(typeof(UserAccountsCommandHandler))
-                .As<IRequestHandler<UserAccountsCommand, UserAccountsCommand>>()
+                .As<IRequestHandler<UserAccountsCommand, List<UserAccountsCommand>>>()
                 .AsImplementedInterfaces();
             builder.RegisterType(typeof(UserAccountsAddCommandHandler))
-                .As<IRequestHandler<UserAccountsAddCommand, UserAccountsCommand>>()
+                .As<IRequestHandler<UserAccountsAddCommand, UserAccountsAddCommand>>()
                 .AsImplementedInterfaces();
 
             builder.RegisterControllers(typeof(HomeController).Assembly);

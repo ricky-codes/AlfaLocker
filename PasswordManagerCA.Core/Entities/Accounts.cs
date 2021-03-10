@@ -19,21 +19,19 @@ namespace PasswordManagerCA.Core.Entities
 
         [Required]
         [StringLength(100)]
-        public string accountPasswordHash { get; set; }
-
-        [Required]
-        [StringLength(30)]
-        public string accountPasswordSalt { get; set; }
+        public string accountPasswordEncrypt { get; set; }
 
         [StringLength(300)]
         public string accountWebsiteLink { get; set; }
 
-        public int? accountApp { get; set; }
+        public virtual int? accountApp { get; set; }
 
-        public int? accountAppUser { get; set; }
+        public virtual int? accountAppUser { get; set; }
 
+        [ForeignKey("accountApp")]
         public virtual AccountApps AccountApps { get; set; }
 
+        [ForeignKey("accountAppUser")]
         public virtual AppUsers AppUsers { get; set; }
 
         public virtual ICollection<AccountsPasswordHistory> AccountsPasswordHistory { get; set; }

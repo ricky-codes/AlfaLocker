@@ -33,10 +33,19 @@ namespace PasswordManagerCA.Infrastructure.Data.Config
 
         public T Insert<T>(T entity) where T : BaseEntity, IAggregateRoot
         {
-            _dbContext.Set<T>().Add(entity);
-            _dbContext.SaveChanges();
+            try
+            {
+                _dbContext.Set<T>().Add(entity);
+                _dbContext.SaveChanges();
+
+                return entity;
+            }
             
-            return entity;
+            catch(Exception err)
+            {
+                string eee = err.InnerException.ToString();
+                return null;
+            }
         }
 
         public int Update<T>(int id, T entity) where T : BaseEntity, IAggregateRoot

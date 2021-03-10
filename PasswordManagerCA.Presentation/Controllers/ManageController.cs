@@ -22,34 +22,37 @@ namespace PasswordManager.Presentation.Controllers
             _mediator = mediator;
         }
 
+        [HttpGet]
         public async Task<ActionResult> Accounts()
         {
             UserAccountsCommand currentUserAccounts = new UserAccountsCommand();
-            currentUserAccounts.Id = (int)Session["user-id"];
+            currentUserAccounts.UserId = (int)Session["user-id"];
             var response = await _mediator.Send(currentUserAccounts);
-            if ((bool)response.isValid)
+            if (response == null)
             {
-                return View(response.UserAccounts);
+                return RedirectToAction("Index", "Home");
             }
-            return View(response.UserAccounts);
+            return View(response);
         }
 
-        [HttpPost]
-        public async Task<ActionResult> Create(UserAccountsAddCommand currentUserAccountsAdd)
-        {
-            currentUserAccountsAdd.UserId = (int)Session["user-id"];
-            var response = await _mediator.Send(currentUserAccountsAdd);
-            if ((bool)response.isValid)
-            {
-                return View();
-            }
-            return View("Accounts");
-        }
 
         [HttpGet]
         public ActionResult Create()
         {
             return View(new UserAccountsAddCommand());
         }
+
+        [HttpPost]
+        public async Task<ActionResult> Create(UserAccountsAddCommand newAccount)
+        {
+            newAccount.UserId = (int)Session["user-id"];
+            var response = await _mediator.Send(newAccount);
+            if ((bool)response.isValid)
+            {
+                return RedirectToAction("Accounts", "Manage");
+            }
+            return View(response);
+        }
+
     }
 }

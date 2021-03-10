@@ -13,7 +13,7 @@ namespace PasswordManagerCA.Core.Commands
     {
         [Required(ErrorMessage = "Please insert your verification code")]
         [Display(Name = "Verification Code")]
-        public int UserVerificationCode { get; set; }
+        public int? UserVerificationCode { get; set; }
 
         public int Id { get; set; }
 

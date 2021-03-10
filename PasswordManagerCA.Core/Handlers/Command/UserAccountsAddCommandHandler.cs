@@ -9,44 +9,41 @@ using PasswordManagerCA.Core.Commands;
 using PasswordManagerCA.Core.Entities;
 using PasswordManagerCA.Core.Interfaces;
 using PasswordManagerCA.SharedKernel.Interfaces;
+using PasswordManagerCA.SharedKernel;
 
 namespace PasswordManagerCA.Core.Handlers.Command
 {
-    public class UserAccountsAddCommandHandler : IRequestHandler<UserAccountsAddCommand, UserAccountsCommand>
+    public class UserAccountsAddCommandHandler : IRequestHandler<UserAccountsAddCommand, UserAccountsAddCommand>
     {
         private readonly IRepository _repository;
         private readonly IMediator _mediator;
-        private readonly IPasswordHasher _passwordHasher;
+        private readonly IPasswordEncrypt _passwordEncrypt;
 
 
-        public UserAccountsAddCommandHandler(IMediator mediator, IRepository repository, IPasswordHasher passwordHasher)
+        public UserAccountsAddCommandHandler(IMediator mediator, IRepository repository, IPasswordEncrypt passwordEncrypt)
         {
             this._repository = repository;
             this._mediator = mediator;
-            this._passwordHasher = passwordHasher;
+            this._passwordEncrypt = passwordEncrypt;
         }
 
-        public async Task<UserAccountsCommand> Handle(UserAccountsAddCommand request, CancellationToken cancellationToken)
+        public async Task<UserAccountsAddCommand> Handle(UserAccountsAddCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                Accounts accountCreated = _repository.Insert<Accounts>(new Accounts 
-                {
-                    accountUsername = request.Username,
-                    accountPasswordHash = request.PasswordHash,
-                    accountPasswordSalt = request.PasswordSalt,
-                    accountWebsiteLink = request.WebsiteLink,
+                _repository.Insert<Accounts>(new Accounts 
+                { 
+                    accountUsername = request.AccountsUsername,
+                    accountPasswordEncrypt = _passwordEncrypt.EncryptPassword(Globals.encryptKeyGlobal, request.AccountPassword),
+                    accountWebsiteLink = request.AccountWebsiteLink,
                     accountAppUser = request.UserId
                 });
-                AppUsers currentUser = _repository.GetByID<AppUsers>(request.UserId);
-                UserAccountsCommand userAccounts = new UserAccountsCommand();
-                userAccounts.UserAccounts.Add(accountCreated);
-                userAccounts.isValid = true;
-                return userAccounts;
+                request.isValid = true;
+                return request;
             }
-            catch(Exception ex)
+            catch(Exception err)
             {
-                string er = ex.InnerException.ToString();
+                string eee = err.InnerException.ToString();
                 request.isValid = false;
                 return request;
             }
