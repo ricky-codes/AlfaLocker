@@ -56,6 +56,12 @@ namespace PasswordManager.Presentation.App_Start
             builder.RegisterType(typeof(UserAccountsAddCommandHandler))
                 .As<IRequestHandler<UserAccountsAddCommand, UserAccountsAddCommand>>()
                 .AsImplementedInterfaces();
+            builder.RegisterType(typeof(UserAccountsDeleteCommandHandler))
+                .As<IRequestHandler<UserAccountsDeleteCommand, UserAccountsDeleteCommand>>()
+                .AsImplementedInterfaces();
+            builder.RegisterType(typeof(UserAccountsDetailsCommandHandler))
+                .As<IRequestHandler<UserAccountsDetailsCommand, UserAccountsDetailsCommand>>()
+                .AsImplementedInterfaces();
 
             builder.RegisterControllers(typeof(HomeController).Assembly);
             builder.RegisterControllers(typeof(AccountController).Assembly);

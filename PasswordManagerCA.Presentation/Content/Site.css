@@ -1,5 +1,4 @@
 ﻿body {
-    padding-top: 50px;
     padding-bottom: 200px;
 }
 
@@ -46,5 +45,10 @@ textarea {
     align-items: center;
     display: flex;
     height: 100px;
+}
+
+
+#table-margin {
+    margin-top: 60px;
 }
 

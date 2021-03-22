@@ -5,25 +5,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MediatR;
-using PasswordManagerCA.Core.Entities;
 using PasswordManagerCA.Core.Interfaces;
 
 namespace PasswordManagerCA.Core.Commands
 {
-    public class UserAccountsCommand : BaseCommand, IRequest<List<UserAccountsCommand>>
+    public class UserAccountsDetailsCommand : BaseCommand, IRequest<UserAccountsDetailsCommand>
     {
-        public int Id { get; internal set; }
+        public int Id { internal get; set; }
 
         [Display(Name = "Username")]
         public string AccountsUsername { get; set; }
 
         [Display(Name = "Password")]
-        [DataType(DataType.Password)]
         public string AccountPassword { get; set; }
 
         [Display(Name = "Website")]
         public string AccountWebsiteLink { get; set; }
-
-        public int UserId { get; set; }
     }
 }

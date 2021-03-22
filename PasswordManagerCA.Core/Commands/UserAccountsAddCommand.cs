@@ -17,7 +17,15 @@ namespace PasswordManagerCA.Core.Commands
         public string AccountsUsername { get; set; }
 
         [Display(Name = "Password")]
+        [DataType(DataType.Password)]
+        [Required(ErrorMessage = "You must enter a password")]
         public string AccountPassword { get; set; }
+
+        [Display(Name = "Confirm Password")]
+        [DataType(DataType.Password)]
+        [Required(ErrorMessage = "You need to confirm your password")]
+        [Compare("AccountPassword", ErrorMessage = "The password and confirmation password do not match.")]
+        public string AccountPasswordConfirmation { get; set; }
 
         [Display(Name = "Website")]
         public string AccountWebsiteLink { get; set; }

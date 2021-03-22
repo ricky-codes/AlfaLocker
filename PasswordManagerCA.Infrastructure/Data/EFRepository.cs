@@ -60,7 +60,13 @@ namespace PasswordManagerCA.Infrastructure.Data.Config
             return _dbContext.SaveChanges();
         }
 
-        
-        
+        public void Delete<T>(int id) where T : BaseEntity, IAggregateRoot
+        {
+            T entityToDelete = _dbContext.Set<T>().Find(id);
+            Delete<T>(entityToDelete);
+        }
+
+
+
     }
 }

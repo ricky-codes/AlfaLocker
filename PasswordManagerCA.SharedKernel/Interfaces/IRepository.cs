@@ -13,5 +13,6 @@ namespace PasswordManagerCA.SharedKernel.Interfaces
         T Insert<T>(T entity) where T : BaseEntity, IAggregateRoot;
         int Update<T>(int id, T entity) where T : BaseEntity, IAggregateRoot;
         int Delete<T>(T entity) where T : BaseEntity, IAggregateRoot;
+        void Delete<T>(int id) where T : BaseEntity, IAggregateRoot;
     }
 }

@@ -54,5 +54,21 @@ namespace PasswordManager.Presentation.Controllers
             return View(response);
         }
 
+        [HttpGet]
+        public async Task<ActionResult> Delete(int id)
+        {
+            UserAccountsDeleteCommand deleteCommand = new UserAccountsDeleteCommand { Id = id };
+            var response = await _mediator.Send(deleteCommand);
+            return RedirectToAction("Accounts", "Manage");
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> Details(int id)
+        {
+            UserAccountsDetailsCommand requestedDetails = new UserAccountsDetailsCommand { Id = id };
+            var response = await _mediator.Send(requestedDetails);
+            return View(response);
+        }
+
     }
 }
