@@ -10,6 +10,6 @@ namespace PasswordManagerCA.Core.Commands
 {
     public class UserAccountsDeleteCommand : BaseCommand, IRequest<UserAccountsDeleteCommand>
     {
-        public int Id { internal get; set; }
+        public int Id { get; set; }
     }
 }

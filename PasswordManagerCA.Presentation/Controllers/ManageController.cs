@@ -57,8 +57,13 @@ namespace PasswordManager.Presentation.Controllers
         [HttpGet]
         public async Task<ActionResult> Delete(int id)
         {
-            UserAccountsDeleteCommand deleteCommand = new UserAccountsDeleteCommand { Id = id };
-            var response = await _mediator.Send(deleteCommand);
+            return View(new UserAccountsDeleteCommand { Id = id });
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Delete(UserAccountsDeleteCommand accountToDelete)
+        {
+            var response = await _mediator.Send(accountToDelete);
             return RedirectToAction("Accounts", "Manage");
         }
 
@@ -70,5 +75,27 @@ namespace PasswordManager.Presentation.Controllers
             return View(response);
         }
 
+
+        [HttpGet]
+        public async Task<ActionResult> Edit(int id)
+        {
+            UserAccountsEditCommand requestedEdit = new UserAccountsEditCommand { Id = id };
+            var response = await _mediator.Send(requestedEdit);
+            return View(response);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Edit(UserAccountsEditCommand requestedAccount)
+        {
+            UserAccountsEditUpdateCommand accountToUpdate = new UserAccountsEditUpdateCommand
+            {
+                AccountsUsername = requestedAccount.AccountsUsername,
+                AccountPassword = requestedAccount.AccountPassword,
+                AccountWebsiteLink = requestedAccount.AccountWebsiteLink,
+                Id = requestedAccount.Id
+            };
+            var response = await _mediator.Send(accountToUpdate);
+            return RedirectToAction("Accounts", "Manage");
+        }
     }
 }

@@ -1,0 +1,44 @@
+﻿@model PasswordManagerCA.Core.Commands.UserAccountsDeleteCommand
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Edit Account</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this account: @Model.Id?</p>
+
+            </div>
+            <div class="modal-footer">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                <input type="submit" value="Yes" class="btn btn-danger" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>

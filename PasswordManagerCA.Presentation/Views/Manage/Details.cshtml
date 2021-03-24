@@ -7,48 +7,44 @@
 <!DOCTYPE html>
 
 <html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
 <body>
-    <div class="container">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Account Details</h4>
-                </div>
-                <div class="modal-body">
-                    <dl class="dl-horizontal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Account Details</h4>
+            </div>
+            <div class="modal-body">
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.AccountsUsername)
-                        </dt>
+                <dl class="dl-horizontal">
 
-                        <dd>
-                            @Html.DisplayFor(model => model.AccountsUsername)
-                        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.AccountsUsername)
+                    </dt>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.AccountPassword)
-                        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.AccountsUsername)
+                    </dd>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.AccountPassword)
-                        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.AccountPassword)
+                    </dt>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.AccountWebsiteLink)
-                        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.AccountPassword)
+                    </dd>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.AccountWebsiteLink)
-                        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.AccountWebsiteLink)
+                    </dt>
 
-                    </dl>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-                    </div>
+                    <dd>
+                        @Html.DisplayFor(model => model.AccountWebsiteLink)
+                    </dd>
+
+                </dl>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

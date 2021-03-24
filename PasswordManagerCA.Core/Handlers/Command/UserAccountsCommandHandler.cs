@@ -38,8 +38,6 @@ namespace PasswordManagerCA.Core.Handlers.Command
                 {
                     userAccounts.Add(new UserAccountsCommand
                     {
-                        AccountsUsername = account.accountUsername,
-                        AccountPassword = _passwordEncrypt.DecryptPassword(Globals.encryptKeyGlobal, account.accountPasswordEncrypt),
                         AccountWebsiteLink = account.accountWebsiteLink,
                         Id = account.id,
                         isValid = true
@@ -47,7 +45,7 @@ namespace PasswordManagerCA.Core.Handlers.Command
                 }
                 return userAccounts;
             }
-            catch(Exception err)
+            catch
             {
                 return null;
             }

@@ -1,5 +1,6 @@
 ﻿body {
     padding-bottom: 200px;
+    padding-right: 0px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -51,4 +52,3 @@ textarea {
 #table-margin {
     margin-top: 60px;
 }
-

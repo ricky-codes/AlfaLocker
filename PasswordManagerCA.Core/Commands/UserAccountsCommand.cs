@@ -14,16 +14,11 @@ namespace PasswordManagerCA.Core.Commands
     {
         public int Id { get; internal set; }
 
-        [Display(Name = "Username")]
-        public string AccountsUsername { get; set; }
-
-        [Display(Name = "Password")]
-        [DataType(DataType.Password)]
-        public string AccountPassword { get; set; }
-
         [Display(Name = "Website")]
         public string AccountWebsiteLink { get; set; }
 
         public int UserId { get; set; }
+
+        public int WebsiteAccountsCount { get; set; }
     }
 }
