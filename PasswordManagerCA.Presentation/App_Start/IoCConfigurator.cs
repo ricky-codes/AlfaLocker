@@ -11,7 +11,9 @@ using CommonServiceLocator;
 using MediatR;
 using PasswordManager.Presentation.Controllers;
 using PasswordManagerCA.Core.Commands;
+using PasswordManagerCA.Core.Events;
 using PasswordManagerCA.Core.Handlers.Command;
+using PasswordManagerCA.Core.Handlers.Event;
 using PasswordManagerCA.Core.Interfaces;
 using PasswordManagerCA.Infrastructure.Data;
 using PasswordManagerCA.Infrastructure.Data.Config;
@@ -34,6 +36,7 @@ namespace PasswordManager.Presentation.App_Start
 
             builder.RegisterType<PasswordHasher>().As<IPasswordHasher>();
             builder.RegisterType<PasswordEncrypt>().As<IPasswordEncrypt>();
+            builder.RegisterType<EmailSender>().As<IEmailSender>();
 
             builder.RegisterType(typeof(UserRegistrationCommandHandler))
                 .As<IRequestHandler<UserRegistrationCommand, UserRegistrationCommand>>()
@@ -67,6 +70,9 @@ namespace PasswordManager.Presentation.App_Start
                 .AsImplementedInterfaces();
             builder.RegisterType(typeof(UserAccountsEditUpdateCommandHandler))
                 .As<IRequestHandler<UserAccountsEditUpdateCommand, UserAccountsEditUpdateCommand>>()
+                .AsImplementedInterfaces();
+            builder.RegisterType(typeof(UserRegistrationNotificationHandler))
+                .As<INotificationHandler<UserRegistrationNotification>>()
                 .AsImplementedInterfaces();
 
             builder.RegisterControllers(typeof(HomeController).Assembly);

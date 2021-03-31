@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using MediatR;
 using PasswordManagerCA.Core.Events;
 using PasswordManagerCA.Core.Interfaces;
+using PasswordManagerCA.SharedKernel;
 
 namespace PasswordManagerCA.Core.Handlers.Event
 {
@@ -14,11 +15,16 @@ namespace PasswordManagerCA.Core.Handlers.Event
     {
         private IEmailSender _emailSender { get; set; }
 
+        public UserRegistrationNotificationHandler(IEmailSender emailSender)
+        {
+            this._emailSender = emailSender;
+        }
+
         public Task Handle(UserRegistrationNotification notification, CancellationToken cancellationToken)
         {
             return Task.Run(() =>
             {
-                _emailSender.SendEmailAsync(notification.AppUserEmail, "ricardu12345@gmail.com", "MyPassword: Confirmation code", notification.AppUserVerificationCode.ToString());
+                _emailSender.SendEmailSync(notification.AppUserEmail, Globals.emailService, "MyPassword - Confirmation code", notification.AppUserVerificationCode.ToString());
             });
         }
     }

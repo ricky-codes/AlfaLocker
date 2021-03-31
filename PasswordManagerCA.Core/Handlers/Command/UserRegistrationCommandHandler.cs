@@ -58,8 +58,9 @@ namespace PasswordManagerCA.Core.Handlers.Command
 
                 return request;
             }
-            catch
+            catch (Exception ex)
             {
+                string err = ex.InnerException.ToString();
                 request.isValid = false;
                 return request;
             }
